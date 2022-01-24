@@ -1,0 +1,90 @@
+{% extends './backoffice/base_backoffice.html.twig' %}
+
+{% block javascripts %}
+    <script src="/js/backoffice/checkbox.js"></script>
+{% endblock %}
+
+{% block body %}
+ <section id="formulaire-template">
+                <div class="formulaire-template-container">
+                    <h1>Créer une oeuvre</h1>
+                    <div class="stroke"></div>
+                    <div class="container-formulaire-template">
+                    	{{ form_start(formView) }}
+                            <div class="form_input"> 
+                                <p>Titre de l'oeuvre</p>
+                                {{ form_widget(formView.title) }}
+
+                            </div>
+
+                            <div class="container-button">
+                                <p>Catégorie de l'oeuvre: </p>
+                                <div id="oil-category-container" class="active" onclick="checkboxCategory('oil')">
+                                    Huile
+                                    {{ form_widget(formView.oil, { 'id': 'oil-check'}) }}
+                                </div>
+                                <div id="acrylique-category-container" onclick="checkboxCategory('acrylique')">
+                                    Acrylique
+                                    {{ form_widget(formView.acrylique, { 'id': 'acrylique-check'}) }}
+                                </div>
+                            </div>
+
+                            <div class="form_input_file">
+                                <div class="button-part">
+                                    <p>Photo de l'oeuvre</p>
+                                {{ form_widget(formView.picture, {'id' : 'pictureSelect'}) }}
+                                </div>
+                                <div id="img-part" class="img-part" style='background-image:url("/image/default-picture.png")'>
+
+                                </div>
+                            </div>
+                             <div class="container-button">
+                                <p>Type de l'oeuvre: </p>
+                                <div id="portrait-category-container" class="active" onclick="checkboxMode('portrait')">
+                                    Portrait
+                                    {{ form_widget(formView.portrait, { 'id': 'portrait-check'}) }}
+                                </div>
+                                <div id="paysage-category-container" onclick="checkboxMode('paysage')">
+                                    Paysage
+                                    {{ form_widget(formView.paysage, { 'id': 'paysage-check'}) }}
+                                </div>
+                            </div>
+
+                            <div id="form-taille-number" className="non-validate">
+                                <div class="form_input_double_input">
+                                    <p>Format</p>
+                                    <div>
+                                        {{ form_widget(formView.format) }}
+                                        {{ form_widget(formView.format2) }}    
+                                    </div>     
+                                </div>
+                            </div>
+
+                            {{ form_widget(formView.admin, { 'value': app.user.id }) }}
+
+                          
+                            <button type="submit">Valider la création</button>
+                        {{ form_end(formView) }}
+                    </div>
+
+                </div>
+            </section>
+            <script>  
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                        $('#img-part').attr('style', 'background-image:url('+e.target.result+')');
+                        }
+                        
+                        reader.readAsDataURL(input.files[0]); // convert to base64 string
+                    }
+                }
+
+                $("#pictureSelect").change(function() {
+                readURL(this);
+                });
+            
+            </script>
+{% endblock %}

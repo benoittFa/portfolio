@@ -1,0 +1,44 @@
+{% extends './backoffice/base_backoffice.html.twig' %}
+
+
+{% block body %}
+            <section id="tab-template">
+                <div class="tab-template-container">
+                    <h1>Contact</h1>
+                    <div class="stroke"></div>
+
+                    <div class="container-tab-template">
+                        <table cellSpacing="0" cellPadding="0">
+                            <tbody>
+                            <tr>
+                                <td>Nom</td>
+                                <td>Prénom</td>
+                                <td>E-mail</td>
+                                <td>Téléphone</td>
+
+                                <td>Message</td>
+                                <td>Date</td>
+
+                                <td>Supprimer</td>
+                            </tr>
+                            {% for contact in contacts %}
+                                <tr>
+                                    <td>{{ contact.name|upper }}</td>
+                                    <td>{{ contact.firstname|capitalize }}</td>
+                                    <td>{{ contact.mail }}</td>
+                                    <td>{{ contact.phone }}</td>
+                                    <td>{{ contact.message }}</td>
+
+
+                                    <td>{{ contact.date |format_datetime('short', 'none', locale='fr') }}</td>
+
+                                    <td><a href="{{ path ('delete_id_contact', {'id': contact.id}) }}"><div style='background-image:url("/image/icons/trash.png")'></div></a></td>
+                                </tr>
+                            {% endfor %}    
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+{% endblock %}

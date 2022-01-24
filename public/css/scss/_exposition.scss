@@ -1,0 +1,116 @@
+#exposition-section{
+    width: 100%;
+    padding-top: 150px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    
+    .container-exposition{
+        @include flex(flex-start);
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+        min-height: 80vh;
+
+        h1{
+            font-family: $font1;
+            font-size: 20px;
+            font-weight:600;
+            color:$color_grey1; 
+        }
+
+        .contenu-exposition{
+            background-color: $color_white;
+            padding: 20px;
+            box-sizing: border-box;
+            width:550px;
+            height: 230px;
+            overflow: hidden;
+
+            margin: 10px 0;
+
+            @include flex(flex-start);
+            flex-wrap: nowrap;
+            align-items: center;
+            img{
+                max-height: 190px;
+            }
+            .text-container{
+                margin: 0 30px;
+                h2{
+                    font-family: $font1;
+                    font-size: 20px;
+                    font-weight:600;
+                    color:$color_grey1; 
+                }
+                p{
+                    font-family: $font1;
+                    font-size: 14px;
+                    font-weight:300;
+                    color:$color_grey1; 
+                }
+            }
+            
+            &:nth-child(even){ 
+                 .image-container{
+                     order:1;
+                 }
+                 .text-container{
+                     order:2;
+                     text-align: left;
+                 }
+             }
+
+            &:nth-child(odd){
+                .image-container{
+                    order:2;
+                }
+                .text-container{
+                    order:1;
+                    text-align: right;
+                }
+            }
+        }
+        
+    }
+    .mentions-legales{
+        @include flex(space-between);
+        align-items: center;
+        
+        width: 100%;
+        padding: 30px 50px;
+        box-sizing: border-box;
+        p{
+            font-family: $font1;
+            font-size: 12px;
+            font-weight:200;
+            color: $color_grey1; 
+            opacity: .8;
+            margin-right: 20px;
+            transition: .7s;
+
+        }
+        div{
+            @include flex(center);
+            align-items: center;
+        }
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    #exposition-section{
+
+        .container-exposition{
+           .contenu-exposition{
+                padding: 15px;
+                width:350px;
+            }
+        }
+        .mentions-legales{
+            p{
+                font-family: $font1;
+                font-size: 10px;
+            }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Benoit Fabioux{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <link rel="stylesheet" href="/css/style.css"/>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+       
+        
+
+             <a href="{{ path ('about') }}"><div id="logotype-menu-img" class="menu-vitrine logotype-menu"></div></a>
+            <div id="menu-vitrine" class="menu-vitrine link-list">
+                <ul>
+                    <a href="{{ path ('galerie') }}">
+                        <li id="galery">
+                            <p>Galerie</p>
+                            <div class="{{galeryMenu}}"></div>
+                        </li>
+
+                    </a>
+                    <a href="{{ path ('about') }}">
+                        <li id="about" >
+                            <p>À propos</p>
+                            <div class="{{aboutMenu}}" ></div>
+                        </li>
+                    </a>
+                     <a href="{{ path ('expositions') }}">
+                        <li id="exposistions">
+                            <p>Expositions</p>
+                            <div class="{{expositionMenu}}"></div>
+                        </li>
+                    </a>
+                    <a href="/#contact-section">
+                        <li id="contact">
+                            <p>Contact</p>
+                            <div ></div>
+                        </li>
+                    </a>
+                    {% if app.user %}
+                    <a href="{{ path ('dashboard') }}">
+                        <li>
+                            <p>Backoffice</p>
+                            <div ></div>
+                        </li>
+                    </a>
+                    {% endif %}
+                </ul>
+            </div>
+        {% block body %}
+            
+
+        {% endblock %}
+    </body>
+</html>

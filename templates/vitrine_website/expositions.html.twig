@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Benoit Fabioux - Expositions{% endblock %}
+
+{% block body %}
+    <section id="exposition-section">
+       <div class="container-exposition">
+            <h1>Expositions</h1>
+            {% for exposition in expositions %}
+                <div class="contenu-exposition">
+                    <div class="image-container">
+                        <img src='{{ exposition.picture }}'/>
+                    </div>
+                    <div class='text-container'>
+                        <h2>{{ exposition.title|upper }}</h2>
+                        <p>{{ exposition.text }}</p>
+                    </div>
+                </div>
+            {% endfor %}    
+       </div>
+   
+        <div class='mentions-legales'>
+            <p id="right-paragraph">©2022 Tous droits réservés Benoit Fabioux</p>
+            <div>
+                <a href="{{ path ('mentions_legales') }}">
+                    <p>Mentions légales</p>
+                </a>
+                <a href="{{ path ('politiques_confidentialites') }}">
+                    <p>Politique de confidentialités</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script> 
+        let date = new Date();
+        document.getElementById('right-paragraph').innerHTML = "©"+date.getFullYear()+" Tous droits réservés Benoit Fabioux";
+    </script>
+{% endblock %}

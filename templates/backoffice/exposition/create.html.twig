@@ -1,0 +1,59 @@
+{% extends './backoffice/base_backoffice.html.twig' %}
+
+{% block javascripts %}
+    <script src="/js/backoffice/checkbox.js"></script>
+{% endblock %}
+
+{% block body %}
+ <section id="formulaire-template">
+                <div class="formulaire-template-container">
+                    <h1>Créer une exposition</h1>
+                    <div class="stroke"></div>
+                    <div class="container-formulaire-template">
+                    	{{ form_start(formView) }}
+                            <div class="form_input"> 
+                                <p>Titre de l'exposition</p>
+                                {{ form_row(formView.title) }}
+                            </div>
+
+                            <div class="form_input_file">
+                                <div class="button-part">
+                                    <p>Photo de l'exposition</p>
+                                {{ form_widget(formView.picture, {'id' : 'pictureSelect'}) }}
+                                </div>
+                                <div id="img-part" class="img-part" style='background-image:url("/image/default-picture.png")'>
+
+                                </div>
+                            </div>
+                            <div class="form_input"> 
+                                <p>Texte de l'exposition</p>
+                                {{ form_row(formView.texte) }}
+                            </div>
+                     
+                            
+                            <button type="submit">Valider la création</button>
+                        {{ form_end(formView) }}
+                    </div>
+
+                </div>
+            </section>
+
+            <script>  
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                        $('#img-part').attr('style', 'background-image:url('+e.target.result+')');
+                        }
+                        
+                        reader.readAsDataURL(input.files[0]); // convert to base64 string
+                    }
+                }
+
+                $("#pictureSelect").change(function() {
+                readURL(this);
+                });
+            
+            </script>
+{% endblock %}

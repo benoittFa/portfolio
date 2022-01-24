@@ -1,0 +1,38 @@
+{% extends './backoffice/base_backoffice.html.twig' %}
+
+
+{% block body %}
+            <section id="tab-template">
+                <div class="tab-template-container">
+                    <h1>Manager vos expositions</h1>
+                    <div class="stroke"></div>
+
+                    <div class="container-tab-template">
+                        <table cellSpacing="0" cellPadding="0">
+                            <tbody>
+                            <tr>
+                                <td>Titre</td>
+                                <td>Texte</td>
+                                <td>Photo</td>
+                                <td>Création</td>
+
+
+                                <td>Supprimer</td> 
+                            </tr>
+                            {% for exposition in expositions %}
+                                <tr>
+                                    <td><b>{{ exposition.title|upper }}</b></td>
+                                    <td><b>{{ exposition.text }}</b></td>
+                                    <td><div class="user-img" style='background-image: url("{{ exposition.picture }}")'></div></td>
+                                    <td>{{ exposition.creationDate |format_datetime('short', 'none', locale='fr') }}</td>
+
+                                    <td><a href="{{ path ('delete_id_exposition', {'id': exposition.id}) }}"><div style='background-image:url("/image/icons/trash.png")'></div></a></td>
+                                </tr>
+                            {% endfor %}     
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+{% endblock %}

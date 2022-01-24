@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100;200;300;400;500;600;700&display=swap');
+
+//Les differentes variables couleurs
+$color_fond : #F5F5F5;
+$color_grey1 : #202020;
+$color_white : #FFFFFF;
+$color_grey2 : #404040;
+$color_grey3 : #DDDDDD;
+
+$color_principaly: #517AB2;
+$color_fonce_back : #001B5B;
+$color_clair_back : #859dd8;
+$valid_color:#0e8127;
+$no-valid_color: #ff3838;
+  
+//Les differentes variables font
+$font1: 'Montserrat', sans-serif;
+$font2: 'Antonio', sans-serif;
+
+p, h1, h2, h3, span {
+    &::selection{
+        background-color: $color_grey1;
+        color: $color_white;
+    }
+}
+//Mixin Section
+@mixin section{
+    margin:0;
+    width:100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: visible;
+
+}
+//Mixin Conteneur
+@mixin section_title{
+    font-family: $font1;
+    font-size: 35px;
+    font-weight: 600;
+    text-align: center;
+    margin: 30px 0px;
+}
+
+// Si aucune valeur n'est précisée alors $justify vaut space-around
+@mixin flex($justify: space-around){
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: $justify;
+}
+
+*{
+    cursor: url('../image/icons/mouse.png'), auto;
+}
+//Déclaration des attributs de bases
+body{
+    margin:0;
+    background-color: $color_fond ;
+    position: relative;
+    height: max-content;
+    transition: .7s;
+
+    
+}
+html {
+    scroll-behavior: smooth;
+  }
+a{
+    text-decoration: none;
+    color: $color_grey1;
+   
+}
+.underSlideTilte{
+    @include flex(center);
+    align-items: center;
+    flex-direction: column;
+
+    position: relative;
+    width: max-content;
+    h2{
+        font-family: $font1;
+        font-size: 25px;
+        font-weight: 700;
+        color: $color_grey1;
+        text-align: center;
+
+        margin: 0;
+        z-index: 3;
+
+        width: max-content;
+    }
+    p{
+        font-family: $font1;
+        font-size: 14px;
+        font-weight: 200;
+        color: $color_grey1;
+        text-align: center;
+        width: max-content;
+
+        
+    }
+    .strokeTitle{
+        position: absolute;
+        right:-30px;
+        bottom: -10px;
+
+        width: 60px;
+        height: 20px;
+        background-color: $color_grey1;
+        z-index: 0;
+    }
+}
+
+@import "scss/about";
+@import "scss/menu";
+@import "scss/galery";
+@import "scss/galery_caroussel";
+@import "scss/backofficeContain";
+@import "scss/backofficeMenu";
+@import "scss/exposition";

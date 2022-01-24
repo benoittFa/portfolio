@@ -1,0 +1,443 @@
+
+#action-right-bottom{
+    position: fixed;
+    right: 50px;
+    bottom: 70px;
+    @keyframes ani-mouse {
+        0% {
+        opacity: 1;
+        top: 29%;
+        }
+    
+        70% {
+        opacity: 0;
+        top: 70%;
+        }
+        100% {
+        opacity: 0;
+        top: 29%;
+        }
+    }
+    .un-active{
+        display: none;
+    }
+    .mouse_btn {
+       
+        transition: 700ms;
+        .mouse {
+            position: relative;
+            display: block;
+            width: 0px;
+            height: 55px;
+            margin: 0 auto 20px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            border: 1px solid $color_grey3;
+            border-radius: 23px;
+        }
+        .mouse > * {
+            position: absolute;
+            display: block;
+            top: 29%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            margin: -4px 0 0 -4px;
+            background: $color_grey1;
+            border-radius: 50%;
+            -webkit-animation: ani-mouse 2s linear infinite;
+            -moz-animation: ani-mouse 2s linear infinite;
+            animation: ani-mouse 2s linear infinite;
+        }
+    
+    }
+    
+    .roll-up-button-g{
+        width:40px;
+        height:40px;
+
+        margin: 0 0 30px 0;
+        background-color: $color_fond;
+
+        border-radius: 5px;
+        border:1px solid $color_grey1;
+        transition: .7s;
+
+        div{
+            width:100%;
+            height:100%;
+
+            background-image: url('/image/icons/arrow-up-g.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 35%;
+            transition: .7s;
+
+        }  
+        
+        &:hover{
+            border-radius: 50%;
+            border:1px solid $color_white;
+            background-color: $color_grey1;
+            transition: .7s;
+            div{
+                background-image: url('/image/icons/arrow-up-b.png');
+                transition: .7s;
+            }
+        }
+    }
+
+}
+
+#button-category-section{
+    @include flex(center);
+    align-items: center;
+    margin-top: 150px;
+
+    .button-category-container{
+        width: 240px;
+        height: 40px;
+
+        border-radius: 10px;
+        border:1px solid $color_grey1;
+
+        @include flex(center);
+        align-items: center;
+
+        div{
+            width: 119px;
+            height: 40px;
+
+            @include flex(center);
+            align-items: center;
+
+            p{
+                font-family: $font1;
+                font-size: 14px;
+                font-weight:400;
+                color:$color_grey1; 
+                margin: 0;
+            }
+        }
+        .active{
+            background-color: $color_grey1;
+            border-radius: 10px;
+            border:1px solid $color_grey1;
+
+            p{
+                font-size: 14px;
+                font-weight:600;
+                color:$color_white; 
+            }
+        }
+
+        .active-B{
+            background-color: $color_white;
+            border-radius: 10px;
+            border:1px solid $color_white;
+
+            p{
+                font-size: 14px;
+                font-weight:600;
+                color:$color_grey1; 
+            }
+        }
+    }
+}
+
+#galery-section{
+    min-height: 100vh;
+    width: 100%;
+    @include flex(center);
+
+    .galery-container{
+        width: 90%;
+            
+            .huile-section{
+                width: 100%;
+                @include flex(space-around);
+                align-items: center;
+
+            }
+            .acrylyque-section{
+                width: 100%;
+                display: none;
+
+               
+
+            }
+            .galery-contenu{
+                width:47%;
+                margin: 80px 0;
+
+                @include flex(center);
+                align-items: center;
+                flex-direction: column;
+                
+              
+
+                .image-contenu{
+                    overflow: hidden;
+                    transition: .7s;
+        
+                    margin-top: 0px;
+                    opacity: 1;
+                    animation: animation-img 2s  ease-in-out;
+            
+                    box-shadow: 0px 0px 15px $color_grey3;
+            
+                    padding: 25px;
+                    box-sizing: border-box;
+                    background-color: $color_white;
+                    &:hover{
+                        cursor: url('../image/icons/mouse-open.png'), auto;
+                    }
+                    img{
+                        width: 100%;
+                        &:hover{
+                            cursor: url('../image/icons/mouse-open.png'), auto;
+                        }
+                    }
+                }
+                .image-contenu-dark{
+                    overflow: hidden;
+        
+                    margin-top: 0px;
+                    opacity: 1;
+                    animation: animation-img 2s  ease-in-out;
+            
+                    box-shadow: 0px 0px 15px $color_grey2;
+                    transition: .7s;
+            
+                    padding: 25px;
+                    box-sizing: border-box;
+                    background-color: #555555;
+                    img{
+                        width: 100%;
+                    }
+                }
+                h1{
+                    font-family: $font1;
+                    font-size: 14px;
+                    font-weight:700;
+                    color:$color_grey1; 
+                    text-transform: uppercase;
+                    margin: 20px 0 10px 0;
+                    transition: .7s;
+
+                }
+                p{
+                    font-family: $font1;
+                    font-size: 11px;
+                    font-weight:200;
+                    color:$color_grey1; 
+                    margin: 10px 0;
+                    transition: .7s;
+
+                    span{
+                    font-weight:400;
+                    }
+                }
+                @keyframes animation-img{
+                    0% { 
+                        margin-top: 50px;
+                        opacity: 0;
+                    }
+                    100% {
+                        margin-top: 0px;
+                        opacity: 1;
+                    }
+                }
+            }
+        
+    }
+    
+    .mentions-legales{
+        @include flex(space-between);
+        align-items: center;
+        
+        width: 100%;
+        padding: 30px 50px;
+        box-sizing: border-box;
+        p{
+            font-family: $font1;
+            font-size: 12px;
+            font-weight:200;
+            color: $color_grey1; 
+            opacity: .8;
+            margin-right: 20px;
+            transition: .7s;
+
+        }
+        div{
+            @include flex(center);
+            align-items: center;
+        }
+    }
+}
+
+.dark-theme{
+    background-color: $color_grey1;
+    transition: .7s;
+    .logotype-menu{
+        background-image:url('/image/webSite/logo.png'); 
+        transition: .7s;
+
+    }
+    .link-list{   
+        ul{
+            background-color: $color_grey1;
+            li{
+                p{
+                    color:$color_white; 
+                    transition: .7s;
+
+                }
+                div{
+                    background-color: $color_white;
+                    transition: .7s;
+
+                }
+            }
+    
+            .active{
+                background-color: $color_grey1;
+                transition: .7s;
+
+            }
+        }
+    }
+    
+    #action-right-bottom{
+        
+        .mouse_btn {
+            .mouse {
+                border: 1px solid $color_white;
+                transition: .7s;
+
+            }
+            .mouse > * {
+                background: $color_white;
+                transition: .7s;
+
+            }
+        }
+
+        .roll-up-button-g{
+            border:1px solid $color_white;
+            background-color: transparent;
+            transition: .7s;
+
+            div{
+                background-image: url('/image/icons/arrow-up-b.png');
+                transition: .7s;
+
+            }  
+            
+            &:hover{
+                border:1px solid $color_white;
+                background-color: $color_white;
+                transition: .7s;
+
+                div{
+                    background-image: url('/image/icons/arrow-up-g.png');
+                    transition: .7s;
+
+                }
+            }
+        }
+    }
+
+    #button-category-section{
+        .button-category-container{
+            border:1px solid $color_white;
+            transition: .7s;
+
+            div{
+               p{
+                    color:$color_white; 
+                    transition: .7s;
+
+                }
+            }
+
+            .active{
+                background-color: $color_white;
+                border:1px solid $color_white;
+                transition: .7s;
+
+                p{
+                    color:$color_grey1; 
+                    transition: .7s;
+
+                }
+            }
+        }
+    }
+
+    #galery-section{
+        .galery-container{
+                .huile-section{
+                    display: none;
+                   
+                }
+                .acrylyque-section{
+                    @include flex(space-around);
+                    align-items: center;
+                }
+                .galery-contenu{                  
+                    .image-contenu{
+                        background-color: #555555;
+                        box-shadow: 0px 0px 15px $color_grey2;
+                        transition: .7s;
+
+                    }
+                    h1{
+                        color:$color_white; 
+                        transition: .7s;
+
+                    }
+                    p{
+                        color:$color_white; 
+                        transition: .7s;
+
+                    }
+                }
+            
+        }
+        
+        .mentions-legales{
+            p{
+                color: $color_white; 
+                transition: .7s;
+
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #galery-section{
+        .galery-container{
+            width: 100%;     
+            .galery-contenu{
+                width:95%;
+                .image-contenu{
+                    padding: 17px;
+                }       
+            }
+        }
+        
+        .mentions-legales{
+           
+            p{
+                font-size: 10px;
+    
+            }
+            
+        }
+    }
+    
+   
+}

@@ -1,0 +1,85 @@
+{% extends './backoffice/base_backoffice.html.twig' %}
+
+{% block javascripts %}
+    <script src="/js/backoffice/password.js"></script>
+{% endblock %}
+
+{% block body %}
+ <section id="formulaire-template">
+                <div class="formulaire-template-container">
+                    <h1>Créer un nouvel administrateur</h1>
+                    <div class="stroke"></div>
+                    <div class="container-formulaire-template">
+                    	{{ form_start(formView) }}
+
+	                    {{ form_errors(formView) }}
+                            <div class="form_input"> 
+                                <p>Son nom</p>
+                                {{ form_row(formView.name) }}
+                            </div>
+                            <div class="form_input">
+                                <p>Son prénom</p>
+                                {{ form_row(formView.firstname) }}
+                            </div>
+                            <div class="form_input">
+                                <p>Son e-mail</p>
+                                {{ form_row(formView.mail) }}
+                            </div>
+                            <div class="form_input">
+                                <p>Son téléphone</p>
+                                {{ form_row(formView.phonenumber) }}
+                            </div>
+                            <div class="form_input_file">
+                                <div class="button-part">
+                                    <p>Photo de profil</p>
+                                    {{ form_widget(formView.picture , { 'id': 'pictureAdmin'} ) }}
+                                </div>
+                                <div id="img-admin-part"  style='background-image:url("/image/administrateur/default-user.png")' class="img-part" >
+                                </div>
+                            </div>
+                            <div class="form_input">
+                                <p>Rôle dans la société</p>
+
+                                {{ form_row(formView.jobName) }}
+                            </div>
+                            <div id="password-input" class="form_input">
+                                <p>Le mot de passe</p>
+                                {{ form_row(formView.password, { 'id': 'password'} ) }}
+                            </div>
+                            <div id="password-review-input" class="form_input">
+                                <p>Confirmer le mot de passe</p>
+                                {{ form_row(formView.verifPWD, { 'id': 'verifPassword'}) }}
+                            </div>
+                            <div class="password-status">
+                                <p id="number-in-password">• Le mot de passe doit contenir au moins un chiffre</p>
+                                <p id="uppercase-in-password">• Le mot de passe doit contenir au moins une majuscule</p>
+                                <p id="lowercase-in-password">• Le mot de passe doit contenir au moins une minuscule</p>
+                                <p id="size-in-password">• Le mot de passe doit être supérieur à 10 lettres</p>
+                            </div>
+                            <div id="server-response">
+                            </div>
+                            <button id="validation-form" disabled='true' type="submit">Valider la création</button>
+                        {{ form_end(formView) }}
+                    </div>
+
+                </div>
+            </section>
+            <script>  
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                        $('#img-admin-part').attr('style', 'background-image:url('+e.target.result+')');
+                        }
+                        
+                        reader.readAsDataURL(input.files[0]); // convert to base64 string
+                    }
+                }
+
+                $("#pictureAdmin").change(function() {
+                readURL(this);
+                });
+            
+            </script>
+{% endblock %}

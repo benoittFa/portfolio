@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Benoit Fabioux - À propos{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/wordCounter.js"></script>
+
+    <script>
+        function smoothScroll(target){
+            document.getElementById('about-section-scroll').classList.remove('activeScroll');
+            document.getElementById('biographie-section-scroll').classList.remove('activeScroll');
+            document.getElementById('contact-section-scroll').classList.remove('activeScroll');
+
+            document.getElementById(target+'-scroll').classList.add('activeScroll');
+
+            document.getElementById(target).scrollIntoView({
+                behavior: 'smooth'
+            })
+            history.pushState(null, null, hashval)
+            e.preventDefault()
+              
+        }
+
+        
+
+        // Check si l'element passé en param est affiché sur l'écran
+        function checkVisible(elm) {
+            var rect = elm.getBoundingClientRect();
+            var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+            return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
+        }
+
+        //Regarde si la div competence est affichée toutes les 250ms puis désactive l'interval
+        setInterval(function() {
+            if ( checkVisible(document.getElementById('about-section')))     {
+            document.getElementById('about-section-scroll').classList.add('activeScroll');
+            document.getElementById('biographie-section-scroll').classList.remove('activeScroll');
+            document.getElementById('contact-section-scroll').classList.remove('activeScroll');
+            
+            }
+        }, 50);
+
+        setInterval(function() {
+            if ( checkVisible(document.getElementById('biographie-section')))     {
+            document.getElementById('about-section-scroll').classList.remove('activeScroll');
+            document.getElementById('biographie-section-scroll').classList.add('activeScroll');
+            document.getElementById('contact-section-scroll').classList.remove('activeScroll');
+            
+            }
+        }, 50);
+
+        setInterval(function() {
+            if ( checkVisible(document.getElementById('contact-section'))){
+            document.getElementById('about-section-scroll').classList.remove('activeScroll');
+            document.getElementById('biographie-section-scroll').classList.remove('activeScroll');
+            document.getElementById('contact-section-scroll').classList.add('activeScroll');
+     
+            }
+        }, 50);
+        
+    </script>
+{% endblock %}
+
+{% block body %}
+
+<div id="menu-scroll">
+    <div></div>
+    <a onclick="smoothScroll('about-section')"><p id='about-section-scroll' class="activeScroll">Accueil</p></a>
+    <div></div>
+    <a onclick="smoothScroll('biographie-section')"><p id='biographie-section-scroll'>Biographie</p></a>
+    <div></div>
+    <a onclick="smoothScroll('contact-section')"><p id='contact-section-scroll'>Contact</p></a>
+    <div></div>
+</div>
+
+    <section id="about-section">
+        <div class="about-container">
+            <div class="about-container-section-left" >
+                <img src="{{imageFirstSave}}" alt="Benoit Fabioux"/>
+            </div>
+            <div class="about-container-section-right">
+                <h1>{{titleSave}}</h1>
+                {% if textFirstSave != null %}
+                <p>
+                    <span>Breaking news :</span> {{textFirstSave}}
+                </p>
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+    <section id="biographie-section">
+        <div class="biographie-container">
+            <h1>Biographie</h1>
+            <div class="row-biographie-container">
+                <div>
+                    <p id='text-biographie-1'></p>
+                </div>
+                <div class="middle-section">
+                    <div class="img-middle-section" >
+                        <img src="{{imageBiographie}}" alt="Benoit Fabioux"/>
+                    </div>
+                    <p id='text-biographie-2'>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l’imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n’a pas fait que survivre cinq</p>
+                </div>
+                <div>
+                    <p id='text-biographie-3'>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l’imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n’a pas fait que survivre cinq siècles, mais s’est aussi adapté à la bureautique informatique, sans que son contenu n’en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-section">
+        <div class="contact-container">
+            <h1>Contact</h1>
+            <div class="row-contact-container"> 
+                <div class="mail-contact">
+                    <div style="background-image:url(/image/icons/mail.png)"></div>
+                    <a href="mailto:{{mailSave}}"><p>{{mailSave}}</p></a>
+                </div>
+                <div class="form-section-contact">
+                    {{ form_start(formView) }}
+                        <div class="row-form-container">
+                            <div class="input-form-container">
+                                {{ form_widget(formView.name) }}
+                                
+                                <p>Votre nom</p>
+                            </div>
+                            <div class="input-form-container">
+                                {{ form_widget(formView.firstname) }}
+                                <p>Votre prénom</p>
+                            </div>
+                        </div>
+                        <div class="row-form-container">
+                            <div class="input-form-container">
+                                {{ form_widget(formView.mail) }}
+                                <p>Votre mail</p>
+                            </div>
+                            <div class="input-form-container">
+                                {{ form_widget(formView.phone) }}
+                                <p>Votre téléphone (facultatif)</p>
+                            </div>
+                        </div>
+                        <div class="input-form-container">
+                            {{ form_widget(formView.message) }}
+                            <p>Votre message</p>
+                        </div>
+                            <div class="input-form-container-capcha">
+                                {{ form_widget(formView.capcha) }}
+                                <p>7+3 est égal à combien ?</p>
+                            </div>
+                        <p class="response-capcha">{{ error }}   {{ form_errors(formView) }}</p>
+                        <button type='submit'>
+                            Envoyer le message
+                        </button>
+                    {{ form_end(formView) }}
+                </div>
+            </div>
+        </div>
+        <div class='mentions-legales'>
+            <p id="right-paragraph">©2022 Tous droits réservés Benoit Fabioux</p>
+
+            <div>
+                <a href="{{ path ('mentions_legales') }}">
+                    <p>Mentions légales</p>
+                </a>
+                <a href="{{ path ('politiques_confidentialites') }}">
+                    <p>Politique de confidentialités</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    <script> 
+        let date = new Date();
+        document.getElementById('right-paragraph').innerHTML = "©"+date.getFullYear()+" Tous droits réservés Benoit Fabioux";
+        window.onload = wordCounter( '{{textBiographie}}' );
+    </script>
+{% endblock %}

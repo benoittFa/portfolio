@@ -1,0 +1,42 @@
+{% extends './backoffice/base_backoffice.html.twig' %}
+
+
+{% block body %}
+            <section id="tab-template">
+                <div class="tab-template-container">
+                    <h1>Manager vos oeuvres</h1>
+                    <div class="stroke"></div>
+
+                    <div class="container-tab-template">
+                        <table cellSpacing="0" cellPadding="0">
+                            <tbody>
+                            <tr>
+                                <td>Titre</td>
+                                <td>Catgorie</td>
+                                <td>Format</td>
+                                <td>Photo</td>
+                                <td>Création</td>
+
+                                <td>Modifier</td>
+
+                                <td>Supprimer</td> 
+                            </tr>
+                            {% for artwork in artworks %}
+                                <tr>
+                                    <td><b>{{ artwork.title|upper }}</b></td>
+                                    <td>{{ artwork.categorie }}</td>
+                                    <td>{{ artwork.format }} x {{ artwork.format2 }}</td>
+                                    <td><div class="user-img" style='background-image: url("{{ artwork.picture }}")'></div></td>
+                                    <td>{{ artwork.creationDate |format_datetime('short', 'none', locale='fr') }}</td>
+
+                                    <td><a href="/admin/oeuvre/update/{{ artwork.id }}"><div style='background-image:url("/image/icons/pen.png")'></div></a></td>
+                                    <td><a href="{{ path ('delete_id_artwork', {'id': artwork.id}) }}"><div style='background-image:url("/image/icons/trash.png")'></div></a></td>
+                                </tr>
+                            {% endfor %}     
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+{% endblock %}

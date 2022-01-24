@@ -1,0 +1,149 @@
+.menu-vitrine{
+    z-index: 15;
+    position: fixed;
+    top: 30px;
+
+    transition: .7s;
+}
+.logotype-menu{
+    width: 100px;
+    height: 50px;
+    left:30px;
+
+    background-image:url('/image/webSite/logoN.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    &:hover{
+        cursor: url('../image/icons/mouse-open.png'), auto;
+    }
+    transition: .7s;
+}
+.link-list{
+    right:30px;
+    height: 20px;
+
+    ul{
+        padding: 0;
+        background-color: $color_fond;
+
+        transition: .7s;
+
+        @include flex(flex-end);
+
+        li{
+            list-style: none;
+            margin: 0 12px;
+            height: 20px;
+
+            p{
+                font-family: $font1;
+                font-size: 13px;
+                font-weight:400;
+                color:$color_grey1; 
+                margin: 0;
+
+                transition: .7s;
+
+            }
+            div{
+                height: 1px;
+                width: 0;
+                background-color: $color_grey1;
+                transition: .7s;
+
+                margin-top: 5px;
+
+                opacity: 0;
+                transition: 0.5s;
+            }
+
+            &:hover{
+                div{
+                    transition: 0.5s;
+                    width: 100%;
+                    opacity: 1;
+                }
+            }
+        }
+
+        .active{
+            height: 1px;
+            width: 100%;
+            background-color: $color_grey1;
+            transition: .7s;
+
+            opacity: 1;
+            transition: 0.5s;
+
+        }
+    }
+}
+
+
+#menu-scroll{
+    z-index: 15;
+
+    position: fixed;
+    top:50%;
+    left: 30px;
+
+    width: 90px;
+    height: 250px;
+
+    @include flex(center);
+    align-items: center;
+    flex-direction: column;
+    margin-top: -125px;
+
+    p{
+        font-family: $font1;
+        font-size: 13px;
+        font-weight:300;
+        color:$color_grey1; 
+        margin: 10px 0;
+
+        opacity: .5;
+        transition: .5s;
+        &:hover{
+            cursor: url('../image/icons/mouse-open.png'), auto;
+        }
+    }
+    .activeScroll{
+        opacity: 1;
+        font-weight: 400;
+        transition: .5s;
+
+    }
+    div{
+        width: 1px;
+        height: 20px;
+        opacity: .3;
+        background-color: $color_grey1;
+    }
+}
+
+@media only screen and (max-width: 900px) {  
+    #menu-scroll{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 550px) {  
+    .logotype-menu{
+       display: none;
+    }
+    .link-list{
+        right:30px;
+        height: 20px;
+        ul{
+            width: 350px;
+            li{
+                margin: 0 7px;    
+                p{
+                    font-size: 12px;
+                }        
+            }
+        }
+    }
+}

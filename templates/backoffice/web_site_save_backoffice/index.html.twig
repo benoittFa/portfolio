@@ -1,0 +1,93 @@
+{% extends './backoffice/base_backoffice.html.twig' %}
+
+
+{% block body %}
+<section id="formulaire-template">
+                <div class="formulaire-template-container">
+                    <h1>Modifier les informations de votre site web</h1>
+                    <div class="stroke"></div>
+                    <div class="container-formulaire-template">
+                    	{{ form_start(formView) }} 
+                            <div class="container-title">
+                                <h1>Partie princiaple:</h1>
+                                <div class="form_input">
+                                    <p>Le nom de votre site web</p>
+                                    {{ form_widget(formView.title, {'value': titleSave.content}) }}
+                                </div>
+                                <div class="form_input">
+                                    <p>Le texte d'information</p>
+                                    {{ form_widget(formView.textBreakingNews, {'value': textFirstSave.content}) }}
+                                </div>
+                                 <div class="form_input_file">
+                                    <div class="button-part">
+                                        <p>Selectionnez l'image princiaple</p>
+                                        {{ form_widget(formView.pictureTableau, {'id' : 'pictureSelect1'}) }}
+                                    </div>
+                                    <div id="img-part-1"  class="img-part" style='background-image: url("{{imageFirstSave.content}}")'>
+
+                                    </div>
+                                </div>
+                            </div> 
+                             <div class="container-title">
+                                <h1>Partie Biographie:</h1>
+                                
+                                <div class="form_input">
+                                    <p>Le texte de Biographie</p>
+                                    {{ form_widget(formView.textBio, {'value': textBiographie.content}) }}
+                                </div>
+                                 <div class="form_input_file">
+                                    <div class="button-part">
+                                        <p>Selectionnez l'image</p>
+                                        {{ form_widget(formView.pictureBio, {'id' : 'pictureSelect2'}) }}
+                                    </div>
+                                    <div id="img-part-2" class="img-part" style='background-image: url("{{imageBiographie.content}}")'>
+
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="container-title">
+                                <h1>Partie Contact:</h1>
+                                <div class="form_input">
+                                    <p>Votre mail</p>
+                                    {{ form_widget(formView.email, {'value': mailSave.content}) }}
+                                </div>
+                            </div> 
+
+                            <button type="submit">Valider la création</button>
+                        {{ form_end(formView) }}
+                    </div>
+
+                </div>
+            </section>
+            <script>  
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                        $('#img-part-1').attr('style', 'background-image:url('+e.target.result+')');
+                        }
+                        
+                        reader.readAsDataURL(input.files[0]); // convert to base64 string
+                    }
+                }
+                function readURL2(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                        $('#img-part-2').attr('style', 'background-image:url('+e.target.result+')');
+                        }
+                        
+                        reader.readAsDataURL(input.files[0]); // convert to base64 string
+                    }
+                }
+                $("#pictureSelect1").change(function() {
+                readURL(this);
+                });
+                $("#pictureSelect2").change(function() {
+                readURL2(this);
+                });
+            
+            </script>
+{% endblock %}

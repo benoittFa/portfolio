@@ -1,0 +1,39 @@
+{% extends './base.html.twig' %}
+
+
+{% block body %}
+    <section id="connexion-admin">      
+        <div class='form-container'>
+            <div style='background-image: url("/image/webSite/logoN.png")'></div>
+                <h1>Connexion</h1>
+                <p>Managez votre site en un clic ! </p>
+                
+                {% if error %}
+                    <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+                {% endif %}
+
+                {% if app.user %}
+                    <p>
+                        Vous êtes connecté en tant que {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </p>
+                {% endif %}
+                <form action="{{ path('signup_administrateur') }}" method="post">
+                    <div class="form_input">
+                        <p>Votre identifiant</p>
+                        <input type="text" required placeholder="contact@mondomaine.com" value="{{ last_username }}" name="_username" />
+                    </div>
+                    <div class="form_input">
+                        <p>Votre mot de passe</p> 
+                        <input type="password" required placeholder="••••••••" name="_password" />
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <input type="hidden" name="_target_path" value="/admin/dashboard"/> 
+
+                    <button type="submit">Je me connecte</button>
+                </form> 
+                
+       
+            </div>
+        </div>
+    </section>
+{% endblock %}

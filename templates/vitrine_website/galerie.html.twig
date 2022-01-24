@@ -1,0 +1,149 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Benoit Fabioux - Galerie{% endblock %}
+
+{% block javascripts %}
+<script>
+    window.onscroll = function(ev) {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            document.getElementById('mouse-scroll').classList.add('un-active');
+            document.getElementById('roll-up-button').classList.remove('un-active');
+        }else{
+            document.getElementById('mouse-scroll').classList.remove('un-active');
+            document.getElementById('roll-up-button').classList.add('un-active');
+        }
+    };
+
+    function categoryChange(category){
+        if(category === 'huile'){   
+            document.body.classList.remove('dark-theme');
+
+            document.getElementById('huile-category').classList.add('active');
+            document.getElementById('acrylique-category').classList.remove('active');
+
+        }else if(category === 'acrylique'){
+           
+            document.body.classList.add('dark-theme');
+
+            document.getElementById('huile-category').classList.remove('active');
+            document.getElementById('acrylique-category').classList.add('active');
+
+        }
+    }
+
+</script>
+           
+{% endblock %}
+
+{% block body %}
+    <div id="action-right-bottom">
+        <div id="mouse-scroll" class="mouse_btn">
+            <a class="smooth" href="#qui_est_il">
+                <span class="mouse">
+                    <span>
+                    </span>
+                </span>
+            </a>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        </div>
+        <div id="roll-up-button" class="roll-up-button-g un-active" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+            <div></div>
+        </div>
+    </div>
+
+    <section id="button-category-section">
+        <div id="button-category-container" class="button-category-container">
+            <div id="huile-category" onclick="categoryChange('huile')" class="active"><p>Huile</p></div>
+            <div id="acrylique-category" onclick="categoryChange('acrylique')"><p>Acrylique</p></div>
+        </div>
+    </section>
+
+    <section id="galery-section">
+        <div class="galery-container">
+
+            
+                <div class=" container huile-section">
+                    {% for artwork in artworks %}
+                        
+                        {% if artwork.categorie == 'Huile' %}
+                            <div  class="galery-contenu">
+                                    {% if artwork.type == true %}
+                                    <div style="width:75%">
+
+                                        <div class="image-contenu" >
+                                            <a href='{{ path ('galerie_oeuvre', {'id': artwork.id}) }}'>
+                                                <img src="{{ artwork.picture }}"/>
+                                            </a>    
+                                        </div> 
+                                    {% else %}
+                                     <div style="width:100%">
+
+                                        <div class="image-contenu" >
+                                            <a href='{{ path ('galerie_oeuvre', {'id': artwork.id}) }}'>
+                                                <img src="{{ artwork.picture }}"/>
+                                            </a>                                         
+                                        </div> 
+                                    {% endif %}  
+                                    
+                                <h1>{{ artwork.title|upper }}</h1>
+                                <p><span>{{ artwork.categorie|capitalize }} |</span> {{ artwork.format }} x {{ artwork.format2 }}</p>
+                            </div>
+                            </div>
+                        {% endif %}  
+                    {% endfor %}  
+                </div>
+                <div class="container acrylyque-section">
+                    {% for artwork in artworks %}
+                        
+                        {% if artwork.categorie == 'Acrylique' %}
+                            <div  class="galery-contenu">
+                                     {% if artwork.type == true %}
+                                    <div style="width:75%">
+
+                                        <div class="image-contenu" >
+                                            <a href='{{ path ('galerie_oeuvre', {'id': artwork.id}) }}'>
+                                                <img src="{{ artwork.picture }}"/>
+                                            </a>    
+                                        </div> 
+                                    {% else %}
+                                     <div style="width:100%">
+
+                                        <div class="image-contenu" >
+                                            <a href='{{ path ('galerie_oeuvre', {'id': artwork.id}) }}'>
+                                                <img src="{{ artwork.picture }}"/>
+                                            </a>                                         
+                                        </div> 
+                                    {% endif %}  
+                                    
+                                <h1>{{ artwork.title|upper }}</h1>
+                                <p><span>{{ artwork.categorie|capitalize }} |</span> {{ artwork.format }} x {{ artwork.format2 }}</p>
+                            </div>
+                            </div>
+                        {% endif %}  
+                    {% endfor %}  
+                </div>
+            
+          
+
+        </div>
+
+        <div class='mentions-legales'>
+            <p id="right-paragraph">©2022 Tous droits réservés Benoit Fabioux</p>
+
+            <div>
+                <a href="{{ path ('mentions_legales') }}">
+                    <p>Mentions légales</p>
+                </a>
+                <a href="{{ path ('politiques_confidentialites') }}">
+                    <p>Politique de confidentialités</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script> 
+        let date = new Date();
+        document.getElementById('right-paragraph').innerHTML = "©"+date.getFullYear()+" Tous droits réservés Benoit Fabioux";
+    </script>
+
+{% endblock %}

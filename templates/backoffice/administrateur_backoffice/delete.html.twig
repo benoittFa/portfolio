@@ -1,0 +1,51 @@
+{% extends './backoffice/base_backoffice.html.twig' %}
+
+
+{% block body %}
+            <section id="tab-template">
+                <div class="tab-template-container">
+                    <h1>Supprimer un administrateur</h1>
+                    <div class="stroke"></div>
+
+                    <div class="container-tab-template">
+                        <table cellSpacing="0" cellPadding="0">
+                            <tbody>
+                            <tr>
+                                <td>Nom</td>
+                                <td>Prénom</td>
+                                <td>E-mail</td>
+                                <td>Téléphone</td>
+
+                                <td>Photo de profil</td>
+
+                                <td>Dénomination</td>
+                                <td>Dernière connexion</td>
+
+                                <td>Supprimer</td>
+                            </tr>
+                            {% for administrator in administrators %}
+                                {% if administrator.visible == true %}
+                                <tr>
+                                    <td>{{ administrator.name|upper }}</td>
+                                    <td>{{ administrator.firstname|capitalize }}</td>
+                                    <td>{{ administrator.email }}</td>
+                                    <td>{{ administrator.phone }}</td>
+ 
+                                    <td><div class="user-img" style='background-image: url("{{ administrator.picture }}")'></div></td>
+
+                                    <td>{{ administrator.job }}</td>
+                                    <td>{{ administrator.creation|format_datetime('short', 'none', locale='fr') }}</td>
+
+                                    <td><a href="{{ path ('delete_id_administrateur', {'id': administrator.id}) }}"><div style='background-image:url("/image/icons/trash.png")'></div></a></td>
+                                </tr>
+                                {% endif %}
+
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+{% endblock %}

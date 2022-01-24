@@ -1,0 +1,25 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Benoit Fabioux - Page 404{% endblock %}
+
+
+
+{% block body %}
+
+    <section id="about-section">
+        <div class="about-container">
+            <div class="about-container-section-left" >
+                <img src="{{imageFirstSave}}" alt="Benoit Fabioux"/>
+            </div>
+            <div class="about-container-section-right">
+                <h1>Vous êtes perdu ?</h1>
+                <p>
+                    <span>Page 404 :</span><a href="{{ path('about') }}"> Retournez à l'accueil</a>
+                </p>
+
+            </div>
+        </div>
+    </section>
+ 
+{% endblock %}

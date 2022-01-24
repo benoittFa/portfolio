@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Benoit Fabioux - BackOffice{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <link rel="stylesheet" href="/css/style.css"/>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+     
+            <section id="menu-admin-top">
+                <ul>
+                    <a href='{{ path ('about') }}'><li>À Propos<div></div></li></a>
+                    <a href='{{ path ('galerie') }}'><li>Mes oeuvres<div></div></li></a>
+                    <a href='{{ path ('expositions') }}'><li>Mes expositions<div></div></li></a>
+                    <a href='/#contact'><li>Contact<div></div></li></a>
+                </ul>
+                <div class="user-section">
+                    <div class="row-part">
+                    <div>
+                        <h1>
+                            {{ app.user.firstname|capitalize }}
+                            <span>  {{ app.user.name|upper }}</span>
+                        </h1>
+                    </div>
+                    <div class="menu-arrow">
+                        <span class="menu one"></span>
+                        <span class="menu two"></span>
+                    </div>
+                    <div>
+                        <div class="user-image" style='background-image: url(" {{ app.user.picture }}")'>
+
+                        </div>
+                    </div>
+                    </div>
+                   
+                    <div class="hidden-menu">
+                        <ul>
+                            <a href='{{ path ('app_logout') }}'><li id='/Individualy-Product'>Déconnexion</li></a>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section id="menu-admin">
+                <div class="container-menu-admin">
+                    <div class='header-menu-admin'>
+                        <div style='background-image: url("/image/webSite/logo.png")'></div>
+                        <h1>Back-Office</h1>
+                        <p>Managez votre site en un clic ! </p>
+                    </div>
+                    <div class="link-container-menu-admin">
+                        <ul class="main-list">
+                            <a href="{{ path ('dashboard') }}"><li class="main-category"><div style='background-image: url("/image/icons/admin/statistique.png")'></div><p>Dashboard</p></li></a>
+  
+                            <li class="main-category"><div style='background-image: url("/image/icons/admin/user.png")'></div><p>Administrateur</p></li>
+                            <ul>
+                                <a href="{{ path ('add_administrateur') }}"><li><div style='background-image: url("/image/icons/admin/plus.png")'></div><p>Créer un nouvel administrateur</p></li></a>
+                                <a href="{{ path ('delete_administrateur') }}"><li><div style='background-image: url("/image/icons/admin/delete.png")'></div><p>Supprimer un administrateur</p></li></a>
+                            </ul>
+                            <li class="main-category"><div style='background-image: url("/image/icons/admin/art.png")'></div><p>Mes oeuvres</p></li>
+                            <ul>
+                                <a href="{{ path ('add_oeuvre') }}"><li><div style='background-image: url("/image/icons/admin/plus.png")'></div><p>Créer une oeuvre</p></li></a>
+                                <a href="{{ path ('manage_oeuvre') }}"><li><div style='background-image: url("/image/icons/admin/pen.png")'></div><p>Gérer mes oeuvres</p></li></a>
+                            </ul>
+                            <li class="main-category"><div style='background-image: url("/image/icons/admin/spotlight.png")'></div><p>Mes expositions</p></li>
+                            <ul>
+                                <a href="{{ path ('add_exposition') }}"><li><div style='background-image: url("/image/icons/admin/plus.png")'></div><p>Créer une exposition</p></li></a>
+                                <a href="{{ path ('manage_exposition') }}"><li><div style='background-image: url("/image/icons/admin/pen.png")'></div><p>Gérer mes expositions</p></li></a>
+                            </ul>
+                            <a href="{{ path ('backoffice_contact') }}"><li class="main-category"><div style='background-image: url("/image/icons/admin/mail.png")'></div><p>Contact</p></li></a>
+                            <a href="{{ path ('backoffice_websiteSave') }}"><li class="main-category"><div style='background-image: url("/image/icons/admin/pen.png")'></div><p>Modifier le site web</p></li></a>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        {% block body %} 
+        {% endblock %}
+    </body>
+</html>

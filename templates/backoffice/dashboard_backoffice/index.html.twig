@@ -1,0 +1,18 @@
+{% extends './backoffice/base_backoffice.html.twig' %}
+
+{% block body %}
+    <section id="formulaire-template">
+        <div class="formulaire-template-container">
+            <h1>La liste de vos oeuvres</h1> 
+            <div class="artwork-container">
+            {% for artwork in artworks %}
+                <div class="artwork">
+                    <div style="background-image:url('{{ artwork.picture }}"></div>
+                    <h2>{{ artwork.title|upper }}</h2>
+                    <p><span>{{ artwork.categorie|capitalize }}</span> | {{ artwork.format }} x {{ artwork.format2 }}</p>
+                </div>
+            {% endfor %}    
+            </div>  
+        </div>
+    </section>
+{% endblock %}
